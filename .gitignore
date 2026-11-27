@@ -1,0 +1,32 @@
+# ---------- LaTeX: archivos que se generan al compilar ----------
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.nav
+*.snm
+*.xdv
+
+# PDF final del informe (descomentar para no subirlo y evitar conflictos)
+# Entrega_final.pdf
+
+# ---------- Python ----------
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ---------- Sistema operativo / editor ----------
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
