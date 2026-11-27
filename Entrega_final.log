@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.9.8)  27 NOV 2026 09:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.9.8)  27 NOV 2026 10:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -471,7 +471,13 @@ Package caption Info: End \AtBeginDocument code.
 Package babel Info: Main language set to 'spanish'.
  [1{c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] [2] (./Entrega_final.aux
+]
+<Imagenes/Ej1.png, id=11, 890.5772pt x 563.85657pt>
+File: Imagenes/Ej1.png Graphic file (type png)
+<use Imagenes/Ej1.png>
+Package pdftex.def Info: Imagenes/Ej1.png  used on input line 93.
+(pdftex.def)             Requested size: 426.79134pt x 270.2179pt.
+ [2 <./Imagenes/Ej1.png>] [3] (./Entrega_final.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -481,18 +487,18 @@ L3 programming layer <2026-08-10>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9564 strings out of 467099
- 163206 string characters out of 5412503
- 605219 words of memory out of 5000000
- 38778 multiletter control sequences out of 15000+600000
- 631235 words of font info for 52 fonts, out of 8000000 for 9000
+ 9590 strings out of 467099
+ 163680 string characters out of 5412503
+ 610219 words of memory out of 5000000
+ 38803 multiletter control sequences out of 15000+600000
+ 631710 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,11n,131p,378b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Entrega_final.pdf (2 pages, 60771 bytes).
+ 83i,12n,131p,378b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Entrega_final.pdf (3 pages, 276953 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
