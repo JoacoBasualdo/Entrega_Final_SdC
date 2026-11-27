@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.9.8)  27 NOV 2026 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.9.8)  27 NOV 2026 12:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Joaquin Basualdo/Desktop/ITBA/4to 1er cuatri/Sistemas de Control/Entega final/Entrega_final.tex"
-(c:/Users/Joaquin Basualdo/Desktop/ITBA/4to 1er cuatri/Sistemas de Control/Entega final/Entrega_final.tex
+**c:/Users/facun/OneDrive/Documentos/GitHub/Entrega_Final_SdC/Entrega_final.tex
+(c:/Users/facun/OneDrive/Documentos/GitHub/Entrega_Final_SdC/Entrega_final.tex
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-08-10>
 (c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
@@ -477,7 +477,29 @@ File: Imagenes/Ej1.png Graphic file (type png)
 <use Imagenes/Ej1.png>
 Package pdftex.def Info: Imagenes/Ej1.png  used on input line 93.
 (pdftex.def)             Requested size: 426.79134pt x 270.2179pt.
- [2 <./Imagenes/Ej1.png>] [3] (./Entrega_final.aux
+ [2 <./Imagenes/Ej1.png>] [3] [4
+
+] [5] [6
+
+] [7] [8
+
+] [9] [10]
+<Imagenes/Ej8.png, id=53, 925.056pt x 443.0151pt>
+File: Imagenes/Ej8.png Graphic file (type png)
+<use Imagenes/Ej8.png>
+Package pdftex.def Info: Imagenes/Ej8.png  used on input line 895.
+(pdftex.def)             Requested size: 405.45045pt x 194.1769pt.
+ [11 <./Imagenes/Ej8.png>] [12] [13
+
+] [14] [15
+
+] [16] [17] [18] [19]
+<Imagenes/Ej10.png, id=84, 715.473pt x 569.7285pt>
+File: Imagenes/Ej10.png Graphic file (type png)
+<use Imagenes/Ej10.png>
+Package pdftex.def Info: Imagenes/Ej10.png  used on input line 1749.
+(pdftex.def)             Requested size: 405.45045pt x 322.85347pt.
+ [20] [21 <./Imagenes/Ej10.png>] [22] (./Entrega_final.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -487,18 +509,18 @@ L3 programming layer <2026-08-10>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9590 strings out of 467099
- 163680 string characters out of 5412503
- 610219 words of memory out of 5000000
- 38803 multiletter control sequences out of 15000+600000
- 631710 words of font info for 54 fonts, out of 8000000 for 9000
+ 9671 strings out of 467099
+ 164968 string characters out of 5412503
+ 621213 words of memory out of 5000000
+ 38872 multiletter control sequences out of 15000+600000
+ 635532 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,12n,131p,378b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Entrega_final.pdf (3 pages, 276953 bytes).
+ 83i,12n,131p,349b,381s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Entrega_final.pdf (22 pages, 703529 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 173 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

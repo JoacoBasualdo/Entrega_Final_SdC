@@ -143,4 +143,1682 @@ un artefacto de la aproximación y no un comportamiento del sistema físico, y
 resulta muy marcado en este caso porque la planta ($\tau=0{,}0125$~s) es mucho
 más rápida que el rango de frecuencias en el que Padé es válido.
 
+% =========================================================
+% EJERCICIO 6 - REPRESENTACIÓN EN VARIABLES DE ESTADO
+% =========================================================
+
+\clearpage
+\setcounter{section}{6}
+\setcounter{subsection}{0}
+\section*{Ejercicio 6 -- Representación en variables de estado}
+
+En esta sección se busca representar el modelo del sistema
+obtenido en el análisis clásico mediante variables de estado,
+con el objetivo de abordar su estudio utilizando las
+herramientas del control moderno.
+
+\subsection{Definición de las variables de estado}
+
+Retomando la función de transferencia obtenida mediante
+la aproximación de Padé de primer orden, y considerando
+$U(s)$ como la entrada y $Y(s)$ como la salida del
+modelo completo, incluyendo el sistema de medición, se tiene
+
+\begin{equation}
+    G(s)H(s)\approx\frac{Y(s)}{U(s)}=
+    \frac{10(1-10s)}
+    {(1+0{,}0125s)(1+10s)}.
+\end{equation}
+
+Desarrollando los productos del numerador y del denominador,
+
+\begin{equation}
+    \frac{Y(s)}{U(s)}=
+    \frac{10-100s}{0{,}125s^2+10{,}0125s+1}.
+\end{equation}
+
+Normalizando el denominador de forma tal que el coeficiente
+del término de mayor grado sea unitario, se obtiene
+
+\begin{equation}
+    \frac{Y(s)}{U(s)}=
+    \frac{-800s+80}{s^2+80{,}1s+8}.
+    \label{eq:ej6_transferencia}
+\end{equation}
+
+Separando los términos del numerador,
+
+\begin{equation}
+    Y(s)=
+    \frac{80U(s)}{s^2+80{,}1s+8}
+    -
+    \frac{800sU(s)}{s^2+80{,}1s+8}.
+\end{equation}
+
+Dado que el sistema aproximado es de segundo orden,
+se definen dos funciones auxiliares $X_1(s)$ y $X_2(s)$,
+que permitirán obtener las variables de estado del sistema,
+
+\begin{equation}
+    X_1(s)=\frac{U(s)}{s^2+80{,}1s+8},
+    \qquad
+    X_2(s)=\frac{sU(s)}{s^2+80{,}1s+8}.
+\end{equation}
+
+De esta manera, la ecuación de salida puede expresarse como
+
+\begin{equation}
+    Y(s)=80X_1(s)-800X_2(s).
+\end{equation}
+
+
+\subsection{Obtención de las ecuaciones de estado}
+
+A partir de las funciones auxiliares definidas,
+se observa que
+
+\begin{equation}
+    X_2(s)=sX_1(s).
+\end{equation}
+
+Por otro lado, despejando la entrada de la expresión
+de $X_1(s)$,
+
+\begin{equation}
+    U(s)=s^2X_1(s)+80{,}1sX_1(s)+8X_1(s).
+\end{equation}
+
+Reemplazando $sX_1(s)=X_2(s)$, resulta
+
+\begin{equation}
+    U(s)=sX_2(s)+80{,}1X_2(s)+8X_1(s).
+\end{equation}
+
+Despejando el término $sX_2(s)$,
+
+\begin{equation}
+    sX_2(s)=-8X_1(s)-80{,}1X_2(s)+U(s).
+\end{equation}
+
+De esta forma, se obtienen las ecuaciones del sistema
+en el dominio de Laplace,
+
+\begin{equation}
+    \begin{cases}
+        sX_1(s)=X_2(s),\\
+        sX_2(s)=-8X_1(s)-80{,}1X_2(s)+U(s),\\
+        Y(s)=80X_1(s)-800X_2(s).
+    \end{cases}
+\end{equation}
+
+Aplicando la transformada inversa de Laplace y considerando
+condiciones iniciales nulas, se obtienen las ecuaciones
+de estado y de salida en el dominio temporal,
+
+\begin{equation}
+    \boxed{
+        \begin{cases}
+            \dot{x}_1(t)=x_2(t),\\
+            \dot{x}_2(t)=-8x_1(t)-80{,}1x_2(t)+u(t),\\
+            y(t)=80x_1(t)-800x_2(t).
+        \end{cases}
+    }
+    \label{eq:ej6_estados}
+\end{equation}
+
+
+\subsection{Representación matricial}
+
+A partir de las ecuaciones obtenidas, se plantea
+la representación general de un sistema lineal e
+invariante en el tiempo mediante variables de estado,
+
+\begin{equation}
+    \begin{cases}
+        \dot{\mathbf{x}}(t)=A\mathbf{x}(t)+Bu(t),\\
+        y(t)=C\mathbf{x}(t)+Du(t),
+    \end{cases}
+\end{equation}
+
+donde el vector de estados está dado por
+
+\begin{equation}
+    \mathbf{x}(t)=
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)
+    \end{bmatrix}.
+\end{equation}
+
+Expresando las ecuaciones de estado en forma matricial,
+
+\begin{equation}
+    \begin{bmatrix}
+        \dot{x}_1(t)\\
+        \dot{x}_2(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & 1\\
+        -8 & -80{,}1
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}u(t).
+\end{equation}
+
+Análogamente, la ecuación de salida resulta
+
+\begin{equation}
+    y(t)=
+    \begin{bmatrix}
+        80 & -800
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)
+    \end{bmatrix}.
+\end{equation}
+
+Finalmente, se identifican las matrices que describen
+al sistema en el espacio de estados,
+
+\begin{equation}
+    \boxed{
+        A=
+        \begin{bmatrix}
+            0 & 1\\
+            -8 & -80{,}1
+        \end{bmatrix},
+        \qquad
+        B=
+        \begin{bmatrix}
+            0\\
+            1
+        \end{bmatrix}
+    }
+    \label{eq:ej6_matrices_ab}
+\end{equation}
+
+\begin{equation}
+    \boxed{
+        C=
+        \begin{bmatrix}
+            80 & -800
+        \end{bmatrix},
+        \qquad D=0
+    }
+    \label{eq:ej6_matrices_cd}
+\end{equation}
+
+Se obtiene así una representación del sistema en variables
+de estado en forma canónica controladora, que será utilizada
+para el posterior análisis de controlabilidad y el diseño
+de la compensación mediante realimentación de estados.
+
+Cabe destacar que las variables de estado definidas
+corresponden a una realización matemática del modelo
+aproximado y no necesariamente representan magnitudes
+físicas individuales de la incubadora.
+
+
+
+% =========================================================
+% EJERCICIO 7 - ANÁLISIS DE CONTROLABILIDAD
+% =========================================================
+
+\clearpage
+\setcounter{section}{7}
+\setcounter{subsection}{0}
+\section*{Ejercicio 7 -- Análisis de controlabilidad}
+
+En esta sección se analiza la controlabilidad del modelo
+en variables de estado obtenido en el ejercicio anterior,
+con el objetivo de determinar si es posible llevar al
+sistema desde cualquier estado inicial hasta cualquier
+estado final en un tiempo finito mediante una acción de
+control adecuada.
+
+
+\subsection{Matriz de controlabilidad}
+
+Para verificar si el sistema es completamente controlable,
+se utiliza el criterio de controlabilidad de Kalman.
+Para un sistema de orden $n$, la matriz de controlabilidad
+está dada por
+
+\begin{equation}
+    \mathcal{C}=
+    \begin{bmatrix}
+        B & AB & A^2B & \cdots & A^{n-1}B
+    \end{bmatrix}.
+\end{equation}
+
+El sistema será completamente controlable si el rango
+de dicha matriz coincide con el orden del sistema, es decir,
+
+\begin{equation}
+    \operatorname{rango}(\mathcal{C})=n.
+\end{equation}
+
+Dado que el modelo obtenido en el ejercicio anterior
+es de segundo orden ($n=2$), la matriz de controlabilidad
+se reduce a
+
+\begin{equation}
+    \mathcal{C}=
+    \begin{bmatrix}
+        B & AB
+    \end{bmatrix}.
+\end{equation}
+
+Retomando las matrices $A$ y $B$ obtenidas en la
+ecuación~\eqref{eq:ej6_matrices_ab},
+
+\begin{equation}
+    A=
+    \begin{bmatrix}
+        0 & 1\\
+        -8 & -80{,}1
+    \end{bmatrix},
+    \qquad
+    B=
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix},
+\end{equation}
+
+se calcula el producto $AB$,
+
+\begin{equation}
+    AB=
+    \begin{bmatrix}
+        0 & 1\\
+        -8 & -80{,}1
+    \end{bmatrix}
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1\\
+        -80{,}1
+    \end{bmatrix}.
+\end{equation}
+
+Por lo tanto, la matriz de controlabilidad del sistema
+resulta
+
+\begin{equation}
+    \boxed{
+        \mathcal{C}=
+        \begin{bmatrix}
+            0 & 1\\
+            1 & -80{,}1
+        \end{bmatrix}
+    }
+\end{equation}
+
+
+\subsection{Verificación de la controlabilidad}
+
+Al tratarse de una matriz cuadrada de dimensión
+$2\times2$, se puede determinar si posee rango completo
+mediante el cálculo de su determinante,
+
+\begin{equation}
+    \det(\mathcal{C})=
+    0\cdot(-80{,}1)-1\cdot1=-1.
+\end{equation}
+
+Como el determinante es distinto de cero, las columnas
+de la matriz de controlabilidad son linealmente
+independientes. Por lo tanto,
+
+\begin{equation}
+    \boxed{
+        \operatorname{rango}(\mathcal{C})=2=n
+    }
+\end{equation}
+
+Se concluye que el modelo obtenido mediante la aproximación
+de Padé de primer orden es completamente controlable,
+dado que el rango de su matriz de controlabilidad
+coincide con el orden del sistema.
+
+Desde el punto de vista del control moderno, este
+resultado implica que es posible llevar ambas variables
+de estado, $x_1(t)$ y $x_2(t)$, a valores deseados mediante
+una acción de control adecuada.
+
+Asimismo, la controlabilidad del sistema garantiza
+que es posible asignar arbitrariamente los polos
+del sistema a lazo cerrado mediante realimentación
+de estados. Esta propiedad será utilizada en el
+ejercicio siguiente para diseñar una compensación
+que busque satisfacer las especificaciones de
+sobrepico del 10~\% y tiempo de establecimiento
+de $120$ s.
+
+
+
+% =========================================================
+% EJERCICIO 8 - REALIMENTACIÓN DE ESTADOS
+% =========================================================
+
+\clearpage
+\setcounter{section}{8}
+\setcounter{subsection}{0}
+\section*{Ejercicio 8 -- Realimentación de estados}
+
+En esta sección se busca compensar el sistema mediante
+realimentación de estados, con el objetivo de obtener
+una respuesta temporal a lazo cerrado con un sobrepico
+del 10~\% y un tiempo de establecimiento de $120$ s.
+
+Dado que en el ejercicio anterior se verificó que el
+sistema es completamente controlable, es posible asignar
+los polos a lazo cerrado mediante una realimentación
+adecuada de las variables de estado.
+
+
+\subsection{Realimentación de estados}
+
+Retomando el modelo en variables de estado obtenido
+en el ejercicio 6,
+
+\begin{equation}
+    \begin{cases}
+        \dot{\mathbf{x}}(t)=A\mathbf{x}(t)+Bu(t),\\
+        y(t)=C\mathbf{x}(t)+Du(t),
+    \end{cases}
+\end{equation}
+
+con matrices
+
+\begin{equation}
+    A=
+    \begin{bmatrix}
+        0 & 1\\
+        -8 & -80{,}1
+    \end{bmatrix},
+    \qquad
+    B=
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix},
+\end{equation}
+
+\begin{equation}
+    C=
+    \begin{bmatrix}
+        80 & -800
+    \end{bmatrix},
+    \qquad D=0.
+\end{equation}
+
+Se propone una ley de control mediante realimentación
+de estados de la forma
+
+\begin{equation}
+    u(t)=r(t)-K\mathbf{x}(t),
+\end{equation}
+
+donde $r(t)$ corresponde a la referencia del sistema,
+$u(t)$ es la acción de control aplicada al modelo
+original y $K$ es la matriz de realimentación, dada por
+
+\begin{equation}
+    K=
+    \begin{bmatrix}
+        k_1 & k_2
+    \end{bmatrix}.
+\end{equation}
+
+Reemplazando la ley de control en la ecuación de estado,
+
+\begin{equation}
+    \dot{\mathbf{x}}(t)=
+    A\mathbf{x}(t)+B(r(t)-K\mathbf{x}(t)).
+\end{equation}
+
+Agrupando los términos,
+
+\begin{equation}
+    \dot{\mathbf{x}}(t)=
+    (A-BK)\mathbf{x}(t)+Br(t).
+\end{equation}
+
+Por lo tanto, la matriz de dinámica del sistema a
+lazo cerrado está dada por
+
+\begin{equation}
+    A_{LC}=A-BK.
+\end{equation}
+
+Desarrollando el producto matricial,
+
+\begin{equation}
+    A_{LC}=
+    \begin{bmatrix}
+        0 & 1\\
+        -8 & -80{,}1
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}
+    \begin{bmatrix}
+        k_1 & k_2
+    \end{bmatrix}.
+\end{equation}
+
+Finalmente, se obtiene
+
+\begin{equation}
+    \boxed{
+        A_{LC}=
+        \begin{bmatrix}
+            0 & 1\\
+            -8-k_1 & -80{,}1-k_2
+        \end{bmatrix}
+    }
+\end{equation}
+
+
+\subsection{Determinación de los polos deseados}
+
+Para determinar la ubicación de los polos a lazo cerrado,
+se utilizan como aproximación de diseño las expresiones
+correspondientes a un sistema de segundo orden sin ceros.
+
+El sobrepico, expresado en tanto por uno, está relacionado
+con el coeficiente de amortiguamiento mediante
+
+\begin{equation}
+    M_p=
+    e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}.
+\end{equation}
+
+Despejando el coeficiente de amortiguamiento,
+
+\begin{equation}
+    \zeta=
+    \frac{-\ln(M_p)}
+    {\sqrt{\pi^2+\ln^2(M_p)}}.
+\end{equation}
+
+Para un sobrepico del 10~\%, resulta
+
+\begin{equation}
+    \zeta=
+    \frac{-\ln(0{,}1)}
+    {\sqrt{\pi^2+\ln^2(0{,}1)}}
+    \approx 0{,}591155.
+\end{equation}
+
+Por otro lado, adoptando el criterio de establecimiento
+del 2~\%, se utiliza la aproximación
+
+\begin{equation}
+    t_s\approx\frac{4}{\zeta\omega_n}.
+\end{equation}
+
+Despejando la frecuencia natural y reemplazando
+los valores correspondientes,
+
+\begin{equation}
+    \omega_n=
+    \frac{4}{\zeta t_s}
+    =
+    \frac{4}{0{,}591155\cdot120}
+    \approx 0{,}056387\ \text{rad/s}.
+\end{equation}
+
+Los polos deseados del sistema a lazo cerrado se
+obtienen mediante
+
+\begin{equation}
+    p_{1,2}=
+    -\zeta\omega_n
+    \pm j\omega_n\sqrt{1-\zeta^2}.
+\end{equation}
+
+Por lo tanto,
+
+\begin{equation}
+    \boxed{
+        p_{1,2}\approx
+        -0{,}033333\pm j\,0{,}045479
+    }
+    \label{eq:ej8_polos}
+\end{equation}
+
+
+\subsection{Cálculo de las ganancias de realimentación}
+
+Para determinar los coeficientes de la matriz $K$,
+se calcula el polinomio característico del sistema
+a lazo cerrado,
+
+\begin{equation}
+    P_{LC}(s)=\det(sI-A_{LC}).
+\end{equation}
+
+Reemplazando la matriz obtenida anteriormente,
+
+\begin{equation}
+    P_{LC}(s)=
+    \begin{vmatrix}
+        s & -1\\
+        8+k_1 & s+80{,}1+k_2
+    \end{vmatrix}.
+\end{equation}
+
+Desarrollando el determinante,
+
+\begin{equation}
+    P_{LC}(s)=
+    s^2+(80{,}1+k_2)s+(8+k_1).
+\end{equation}
+
+Por otro lado, el polinomio característico deseado
+está dado por
+
+\begin{equation}
+    P_d(s)=
+    s^2+2\zeta\omega_ns+\omega_n^2.
+\end{equation}
+
+Reemplazando los valores obtenidos de $\zeta$ y
+$\omega_n$,
+
+\begin{equation}
+    P_d(s)\approx
+    s^2+0{,}06666667s+0{,}00317947.
+\end{equation}
+
+Igualando los coeficientes de ambos polinomios,
+
+\begin{equation}
+    \begin{cases}
+        8+k_1=\omega_n^2,\\
+        80{,}1+k_2=2\zeta\omega_n.
+    \end{cases}
+\end{equation}
+
+Despejando las ganancias de realimentación,
+
+\begin{equation}
+    \begin{cases}
+        k_1=\omega_n^2-8,\\
+        k_2=2\zeta\omega_n-80{,}1.
+    \end{cases}
+\end{equation}
+
+Reemplazando los valores correspondientes,
+
+\begin{equation}
+    \begin{cases}
+        k_1\approx-7{,}99682053,\\
+        k_2\approx-80{,}03333333.
+    \end{cases}
+\end{equation}
+
+Finalmente, la matriz de realimentación resulta
+
+\begin{equation}
+    \boxed{
+        K\approx
+        \begin{bmatrix}
+            -7{,}99682053 & -80{,}03333333
+        \end{bmatrix}
+    }
+    \label{eq:ej8_ganancias}
+\end{equation}
+
+
+\subsection{Sistema compensado}
+
+Una vez obtenida la matriz de realimentación $K$,
+se calcula la matriz de dinámica del sistema
+compensado mediante
+
+\begin{equation}
+    A_{LC}=A-BK.
+\end{equation}
+
+Reemplazando los valores obtenidos,
+
+\begin{equation}
+    \boxed{
+        A_{LC}\approx
+        \begin{bmatrix}
+            0 & 1\\
+            -0{,}00317947 & -0{,}06666667
+        \end{bmatrix}
+    }
+    \label{eq:ej8_alc}
+\end{equation}
+
+Las matrices $B$, $C$ y $D$ permanecen sin modificaciones,
+por lo que la representación del sistema compensado
+en variables de estado queda dada por
+
+\begin{equation}
+    \begin{bmatrix}
+        \dot{x}_1(t)\\
+        \dot{x}_2(t)
+    \end{bmatrix}
+    \approx
+    \begin{bmatrix}
+        0 & 1\\
+        -0{,}00317947 & -0{,}06666667
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}r(t).
+\end{equation}
+
+La ecuación de salida resulta
+
+\begin{equation}
+    y(t)=
+    \begin{bmatrix}
+        80 & -800
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)
+    \end{bmatrix}.
+\end{equation}
+
+A partir de esta representación, es posible obtener
+la función de transferencia a lazo cerrado mediante
+
+\begin{equation}
+    \frac{Y(s)}{R(s)}
+    =C(sI-A_{LC})^{-1}B+D.
+\end{equation}
+
+Desarrollando esta expresión,
+
+\begin{equation}
+    \boxed{
+        \frac{Y(s)}{R(s)}
+        \approx
+        \frac{-800s+80}
+        {s^2+0{,}06666667s+0{,}00317947}
+    }
+    \label{eq:ej8_transferencia}
+\end{equation}
+
+Se observa que la realimentación de estados modifica
+la ubicación de los polos del sistema, mientras que
+el cero ubicado en $s=+0{,}1$, introducido mediante
+la aproximación de Padé, permanece sin modificaciones.
+
+
+\subsection{Simulación}
+
+Se simula la respuesta temporal del sistema compensado
+ante un escalón unitario mediante Python, utilizando
+la biblioteca \texttt{python-control}.
+
+En la Figura~\ref{fig:ej8} se presenta tanto la respuesta
+temporal del sistema como su respuesta normalizada
+respecto del valor final, con el objetivo de visualizar
+los parámetros temporales obtenidos.
+
+La normalización se realiza únicamente con fines
+gráficos, sin modificar la dinámica ni la ganancia
+estática del sistema compensado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Imagenes/Ej8.png}
+    \caption{Respuesta temporal del sistema compensado
+    mediante realimentación de estados.}
+    \label{fig:ej8}
+\end{figure}
+
+Los parámetros temporales correspondientes al modelo
+compensado se presentan en la Tabla~\ref{tab:ej8}.
+El sobrepico se calcula respecto del valor final
+de la salida y el tiempo de establecimiento se
+determina utilizando una banda de tolerancia del 2~\%.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Parámetro} &
+        \textbf{Deseado} &
+        \textbf{Obtenido}\\
+        \hline
+        Sobrepico & 10~\% & 11,07~\%\\
+        \hline
+        Tiempo de establecimiento & 120 s & 113,26 s\\
+        \hline
+        Tiempo de pico & -- & 76,31 s\\
+        \hline
+    \end{tabular}
+    \caption{Parámetros temporales del sistema compensado
+    mediante realimentación de estados.}
+    \label{tab:ej8}
+\end{table}
+
+Se observa que, mediante la realimentación de estados,
+se obtienen parámetros temporales cercanos a los
+solicitados en la consigna, aunque estos no coinciden
+exactamente con los valores de diseño.
+
+La diferencia entre los valores deseados y los obtenidos
+se debe a que las expresiones utilizadas para determinar
+los polos corresponden a un sistema de segundo orden
+sin ceros, mientras que el sistema analizado presenta
+un cero en el semiplano derecho debido a la aproximación
+de Padé. Además, la expresión utilizada para el tiempo
+de establecimiento constituye una aproximación.
+
+Asimismo, se observa una respuesta inversa inicial,
+producto del cero ubicado en el semiplano derecho.
+Este comportamiento está asociado al carácter de
+fase no mínima del modelo aproximado mediante Padé.
+
+Por otro lado, se observa que el valor final de la salida
+no coincide con el valor de la referencia, dado que la
+realimentación de estados permite modificar la dinámica
+del sistema, pero no garantiza la eliminación del error
+de estado estacionario.
+
+El análisis de dicho error será abordado en el ejercicio
+siguiente.
+
+
+
+% =========================================================
+% EJERCICIO 9 - ERROR DE ESTADO ESTACIONARIO
+% =========================================================
+
+\clearpage
+\setcounter{section}{9}
+\setcounter{subsection}{0}
+\section*{Ejercicio 9 -- Error de estado estacionario}
+
+En esta sección se busca determinar el error de estado
+estacionario del sistema compensado mediante realimentación
+de estados en el ejercicio anterior, con el objetivo de
+analizar su capacidad de seguimiento ante una entrada
+escalón unitario.
+
+
+\subsection{Cálculo del error de estado estacionario}
+
+Retomando la función de transferencia a lazo cerrado
+obtenida en la ecuación~\eqref{eq:ej8_transferencia},
+
+\begin{equation}
+    \frac{Y(s)}{R(s)}\approx
+    \frac{-800s+80}
+    {s^2+0{,}06666667s+0{,}00317947}.
+\end{equation}
+
+Se define el error como la diferencia entre la
+referencia y la salida del sistema,
+
+\begin{equation}
+    e(t)=r(t)-y(t).
+\end{equation}
+
+Aplicando la transformada de Laplace,
+
+\begin{equation}
+    E(s)=R(s)-Y(s).
+\end{equation}
+
+Expresando la salida en función de la referencia
+y agrupando los términos, resulta
+
+\begin{equation}
+    E(s)=R(s)
+    \left(
+        1-\frac{Y(s)}{R(s)}
+    \right).
+\end{equation}
+
+Considerando una entrada escalón unitario,
+
+\begin{equation}
+    R(s)=\frac{1}{s},
+\end{equation}
+
+se obtiene
+
+\begin{equation}
+    E(s)\approx\frac{1}{s}
+    \left(
+        1-
+        \frac{-800s+80}
+        {s^2+0{,}06666667s+0{,}00317947}
+    \right).
+\end{equation}
+
+Dado que los polos del sistema compensado se encuentran
+en el semiplano izquierdo, es posible aplicar el
+teorema del valor final para determinar el error
+de estado estacionario,
+
+\begin{equation}
+    e_{ss}=\lim_{t\to\infty}e(t)
+    =\lim_{s\to0}sE(s).
+\end{equation}
+
+Reemplazando la expresión del error obtenida anteriormente,
+
+\begin{equation}
+    e_{ss}\approx\lim_{s\to0}
+    \left(
+        1-
+        \frac{-800s+80}
+        {s^2+0{,}06666667s+0{,}00317947}
+    \right).
+\end{equation}
+
+Evaluando el límite,
+
+\begin{equation}
+    e_{ss}\approx
+    1-\frac{80}{0{,}00317947}.
+\end{equation}
+
+Finalmente, se obtiene
+
+\begin{equation}
+    \boxed{
+        e_{ss}\approx-25160{,}43
+    }
+    \label{eq:ej9_error}
+\end{equation}
+
+
+\subsection{Análisis del resultado}
+
+A partir del error de estado estacionario calculado,
+se puede determinar el valor final de la salida
+del sistema,
+
+\begin{equation}
+    y(\infty)=r(\infty)-e_{ss}.
+\end{equation}
+
+Considerando que la referencia corresponde a un
+escalón unitario, resulta
+
+\begin{equation}
+    y(\infty)\approx1-(-25160{,}43).
+\end{equation}
+
+Por lo tanto,
+
+\begin{equation}
+    \boxed{
+        y(\infty)\approx25161{,}43
+    }
+    \label{eq:ej9_valor_final}
+\end{equation}
+
+El signo negativo del error indica que el valor
+de la salida en régimen permanente es superior
+al valor de la referencia.
+
+Este resultado es coherente con la respuesta temporal
+presentada en la Figura~\ref{fig:ej8}, en la cual
+la salida alcanza un valor final considerablemente
+superior al de la referencia unitaria.
+
+Esto se debe a que la realimentación de estados permite
+modificar la dinámica del sistema mediante la asignación
+de polos, pero no garantiza que la ganancia estática
+del sistema a lazo cerrado sea unitaria.
+
+En particular, el desplazamiento de los polos hacia
+el origen reduce considerablemente el término independiente
+del denominador de la función de transferencia, lo que
+produce un aumento significativo de la ganancia estática.
+
+Por lo tanto, si bien mediante la compensación realizada
+se obtuvieron parámetros temporales cercanos a los
+solicitados, el sistema presenta un error de estado
+estacionario considerable.
+
+En el ejercicio siguiente se buscará corregir dicho
+error mediante una expansión integral del modelo
+en variables de estado, manteniendo aproximadamente
+las especificaciones dinámicas planteadas en el
+ejercicio 8.
+
+
+
+% =========================================================
+% EJERCICIO 10 - EXPANSIÓN INTEGRAL
+% =========================================================
+
+\clearpage
+\setcounter{section}{10}
+\setcounter{subsection}{0}
+\section*{Ejercicio 10 -- Expansión integral}
+
+En esta sección se busca corregir el error de estado
+estacionario obtenido en el ejercicio anterior mediante
+una expansión integral del modelo en variables de estado,
+manteniendo las especificaciones dinámicas planteadas
+en el ejercicio 8.
+
+Para ello, se incorpora una nueva variable de estado
+correspondiente a la integral del error del sistema.
+
+
+\subsection{Expansión integral del sistema}
+
+Retomando las ecuaciones de estado obtenidas en la
+ecuación~\eqref{eq:ej6_estados},
+
+\begin{equation}
+    \begin{cases}
+        \dot{x}_1(t)=x_2(t),\\
+        \dot{x}_2(t)=-8x_1(t)-80{,}1x_2(t)+u(t),\\
+        y(t)=80x_1(t)-800x_2(t).
+    \end{cases}
+\end{equation}
+
+Se define el error del sistema como la diferencia
+entre la referencia y la salida,
+
+\begin{equation}
+    e(t)=r(t)-y(t).
+\end{equation}
+
+Para incorporar la acción integral, se define una
+nueva variable de estado $x_3(t)$, correspondiente
+a la integral del error, considerando una condición
+inicial nula,
+
+\begin{equation}
+    x_3(t)=\int_0^t e(\tau)\,d\tau.
+\end{equation}
+
+Derivando la expresión anterior,
+
+\begin{equation}
+    \dot{x}_3(t)=e(t)=r(t)-y(t).
+\end{equation}
+
+Reemplazando la ecuación de salida, se obtiene
+
+\begin{equation}
+    \dot{x}_3(t)=
+    -80x_1(t)+800x_2(t)+r(t).
+\end{equation}
+
+De esta manera, se obtiene un sistema expandido de
+tercer orden, cuyo vector de estados está dado por
+
+\begin{equation}
+    \mathbf{x}_e(t)=
+    \begin{bmatrix}
+        x_1(t)\\
+        x_2(t)\\
+        x_3(t)
+    \end{bmatrix}.
+\end{equation}
+
+Las ecuaciones de estado y de salida del sistema
+expandido resultan
+
+\begin{equation}
+    \boxed{
+        \begin{cases}
+            \dot{x}_1(t)=x_2(t),\\
+            \dot{x}_2(t)=-8x_1(t)-80{,}1x_2(t)+u(t),\\
+            \dot{x}_3(t)=-80x_1(t)+800x_2(t)+r(t),\\
+            y(t)=80x_1(t)-800x_2(t).
+        \end{cases}
+    }
+\end{equation}
+
+Expresando las ecuaciones obtenidas en forma matricial,
+
+\begin{equation}
+    \begin{cases}
+        \dot{\mathbf{x}}_e(t)=
+        A_e\mathbf{x}_e(t)+B_eu(t)+B_rr(t),\\
+        y(t)=C_e\mathbf{x}_e(t).
+    \end{cases}
+\end{equation}
+
+Se identifican las matrices del sistema expandido,
+
+\begin{equation}
+    A_e=
+    \begin{bmatrix}
+        0 & 1 & 0\\
+        -8 & -80{,}1 & 0\\
+        -80 & 800 & 0
+    \end{bmatrix},
+    \qquad
+    B_e=
+    \begin{bmatrix}
+        0\\
+        1\\
+        0
+    \end{bmatrix}.
+\end{equation}
+
+\begin{equation}
+    B_r=
+    \begin{bmatrix}
+        0\\
+        0\\
+        1
+    \end{bmatrix},
+    \qquad
+    C_e=
+    \begin{bmatrix}
+        80 & -800 & 0
+    \end{bmatrix},
+    \qquad D=0.
+\end{equation}
+
+En esta representación, $B_e$ vincula la acción de
+control $u(t)$ con las variables de estado, mientras
+que $B_r$ permite incorporar la referencia $r(t)$
+a través de la ecuación correspondiente a la
+integral del error.
+
+
+\subsection{Controlabilidad del sistema expandido}
+
+Debido a que se incorporó una nueva variable de estado,
+se verifica nuevamente la controlabilidad del sistema
+respecto de la acción de control $u(t)$, con el objetivo
+de determinar si es posible asignar arbitrariamente
+los tres polos mediante realimentación de estados.
+
+La matriz de controlabilidad del sistema expandido
+está dada por
+
+\begin{equation}
+    \mathcal{C}_e=
+    \begin{bmatrix}
+        B_e & A_eB_e & A_e^2B_e
+    \end{bmatrix}.
+\end{equation}
+
+Calculando los productos correspondientes,
+
+\begin{equation}
+    A_eB_e=
+    \begin{bmatrix}
+        1\\
+        -80{,}1\\
+        800
+    \end{bmatrix},
+    \qquad
+    A_e^2B_e=
+    \begin{bmatrix}
+        -80{,}1\\
+        6408{,}01\\
+        -64160
+    \end{bmatrix}.
+\end{equation}
+
+Por lo tanto, la matriz de controlabilidad resulta
+
+\begin{equation}
+    \mathcal{C}_e=
+    \begin{bmatrix}
+        0 & 1 & -80{,}1\\
+        1 & -80{,}1 & 6408{,}01\\
+        0 & 800 & -64160
+    \end{bmatrix}.
+\end{equation}
+
+Calculando su determinante,
+
+\begin{equation}
+    \det(\mathcal{C}_e)=
+    -\left[-64160+80{,}1\cdot800\right]=80.
+\end{equation}
+
+Dado que el determinante es distinto de cero,
+
+\begin{equation}
+    \boxed{
+        \operatorname{rango}(\mathcal{C}_e)=3=n
+    }
+\end{equation}
+
+Se concluye que el sistema expandido es completamente
+controlable, por lo que es posible asignar sus tres
+polos mediante una realimentación adecuada de las
+variables de estado.
+
+
+\subsection{Realimentación de estados con acción integral}
+
+Se propone una ley de control que contemple tanto
+la realimentación de las variables de estado originales
+como la acción integral incorporada,
+
+\begin{equation}
+    u(t)=
+    -k_1x_1(t)-k_2x_2(t)+k_ix_3(t),
+\end{equation}
+
+donde $k_i$ corresponde a la ganancia de la acción
+integral.
+
+La matriz de realimentación del sistema expandido
+queda definida como
+
+\begin{equation}
+    K_e=
+    \begin{bmatrix}
+        k_1 & k_2 & -k_i
+    \end{bmatrix}.
+\end{equation}
+
+Por lo tanto, la ley de control puede expresarse
+matricialmente como
+
+\begin{equation}
+    u(t)=-K_e\mathbf{x}_e(t).
+\end{equation}
+
+Reemplazando en la ecuación de estado del sistema
+expandido,
+
+\begin{equation}
+    \dot{\mathbf{x}}_e(t)=
+    A_e\mathbf{x}_e(t)
+    -B_eK_e\mathbf{x}_e(t)+B_rr(t).
+\end{equation}
+
+Agrupando los términos,
+
+\begin{equation}
+    \dot{\mathbf{x}}_e(t)=
+    (A_e-B_eK_e)\mathbf{x}_e(t)+B_rr(t).
+\end{equation}
+
+La matriz de dinámica del sistema compensado
+resulta entonces
+
+\begin{equation}
+    A_{LC}=A_e-B_eK_e.
+\end{equation}
+
+Desarrollando el producto matricial,
+
+\begin{equation}
+    \boxed{
+        A_{LC}=
+        \begin{bmatrix}
+            0 & 1 & 0\\
+            -8-k_1 & -80{,}1-k_2 & k_i\\
+            -80 & 800 & 0
+        \end{bmatrix}
+    }
+\end{equation}
+
+
+\subsection{Determinación de los polos deseados}
+
+Con el objetivo de mantener aproximadamente las
+características dinámicas planteadas en el ejercicio 8,
+se conservan los dos polos complejos conjugados
+obtenidos en la ecuación~\eqref{eq:ej8_polos},
+
+\begin{equation}
+    p_{1,2}=
+    -\zeta\omega_n
+    \pm j\omega_n\sqrt{1-\zeta^2}.
+\end{equation}
+
+Los valores del coeficiente de amortiguamiento
+y la frecuencia natural son
+
+\begin{equation}
+    \zeta\approx0{,}591155,
+    \qquad
+    \omega_n\approx0{,}056387\ \text{rad/s}.
+\end{equation}
+
+Por lo tanto,
+
+\begin{equation}
+    p_{1,2}\approx
+    -0{,}033333\pm j\,0{,}045479.
+\end{equation}
+
+Sin embargo, debido a la incorporación de una nueva
+variable de estado, el sistema expandido es de tercer
+orden, por lo que resulta necesario incorporar un
+tercer polo.
+
+Utilizando el criterio de polos dominantes, se propone
+ubicar el tercer polo cinco veces más alejado del
+eje imaginario que los polos complejos conjugados,
+de manera tal que su influencia sobre la dinámica
+dominante sea menor.
+
+\begin{equation}
+    p_3=-5\zeta\omega_n.
+\end{equation}
+
+Reemplazando los valores correspondientes,
+
+\begin{equation}
+    \boxed{
+        p_3\approx-0{,}16666667
+    }
+\end{equation}
+
+De esta manera, quedan definidos los tres polos
+deseados del sistema compensado,
+
+\begin{equation}
+    \boxed{
+        \begin{cases}
+            p_1\approx-0{,}033333+j\,0{,}045479,\\
+            p_2\approx-0{,}033333-j\,0{,}045479,\\
+            p_3\approx-0{,}16666667.
+        \end{cases}
+    }
+    \label{eq:ej10_polos}
+\end{equation}
+
+
+\subsection{Cálculo de las ganancias de realimentación}
+
+Para determinar las ganancias $k_1$, $k_2$ y $k_i$,
+se calcula el polinomio característico del sistema
+a lazo cerrado,
+
+\begin{equation}
+    P_{LC}(s)=\det(sI-A_{LC}).
+\end{equation}
+
+Reemplazando la matriz obtenida anteriormente,
+
+\begin{equation}
+    P_{LC}(s)=
+    \begin{vmatrix}
+        s & -1 & 0\\
+        8+k_1 & s+80{,}1+k_2 & -k_i\\
+        80 & -800 & s
+    \end{vmatrix}.
+\end{equation}
+
+Desarrollando el determinante,
+
+\begin{equation}
+    \begin{aligned}
+        P_{LC}(s)={}&
+        s^3+(80{,}1+k_2)s^2\\
+        &+(8+k_1-800k_i)s+80k_i.
+    \end{aligned}
+\end{equation}
+
+Por otro lado, el polinomio característico deseado
+se obtiene a partir de los tres polos definidos,
+
+\begin{equation}
+    P_d(s)=(s-p_1)(s-p_2)(s-p_3).
+\end{equation}
+
+Expresando el producto de los polos complejos
+conjugados mediante el polinomio de segundo orden,
+
+\begin{equation}
+    P_d(s)=
+    (s^2+2\zeta\omega_ns+\omega_n^2)(s-p_3).
+\end{equation}
+
+Desarrollando el producto,
+
+\begin{equation}
+    \begin{aligned}
+        P_d(s)={}&s^3+(2\zeta\omega_n-p_3)s^2\\
+        &+(\omega_n^2-2\zeta\omega_np_3)s\\
+        &-\omega_n^2p_3.
+    \end{aligned}
+\end{equation}
+
+Reemplazando los valores obtenidos anteriormente,
+
+\begin{equation}
+    \begin{aligned}
+        P_d(s)\approx{}&
+        s^3+0{,}23333333s^2\\
+        &+0{,}01429058s
+        +0{,}000529911636.
+    \end{aligned}
+\end{equation}
+
+Igualando los coeficientes de ambos polinomios,
+
+\begin{equation}
+    \begin{cases}
+        80{,}1+k_2=2\zeta\omega_n-p_3,\\
+        8+k_1-800k_i=\omega_n^2-2\zeta\omega_np_3,\\
+        80k_i=-\omega_n^2p_3.
+    \end{cases}
+\end{equation}
+
+Despejando las ganancias de realimentación,
+
+\begin{equation}
+    \begin{cases}
+        k_i=\dfrac{-\omega_n^2p_3}{80},\\[6pt]
+        k_1=\omega_n^2-2\zeta\omega_np_3+800k_i-8,\\
+        k_2=2\zeta\omega_n-p_3-80{,}1.
+    \end{cases}
+\end{equation}
+
+Reemplazando los valores numéricos correspondientes,
+
+\begin{equation}
+    k_i\approx
+    \frac{0{,}000529911636}{80}
+    \approx6{,}62389545\cdot10^{-6}.
+\end{equation}
+
+\begin{equation}
+    k_1\approx0{,}01429058+800k_i-8
+    \approx-7{,}98041030.
+\end{equation}
+
+\begin{equation}
+    k_2\approx0{,}23333333-80{,}1
+    \approx-79{,}86666667.
+\end{equation}
+
+Finalmente, las ganancias de realimentación obtenidas
+resultan
+
+\begin{equation}
+    \boxed{
+        \begin{cases}
+            k_1\approx-7{,}98041030,\\
+            k_2\approx-79{,}86666667,\\
+            k_i\approx6{,}62389545\cdot10^{-6}.
+        \end{cases}
+    }
+    \label{eq:ej10_ganancias}
+\end{equation}
+
+Se observa que la incorporación de la acción integral
+requiere recalcular las ganancias $k_1$ y $k_2$ del
+ejercicio 8, dado que el sistema expandido posee
+un orden superior y, por lo tanto, un nuevo polinomio
+característico.
+
+
+\subsection{Sistema compensado}
+
+Una vez determinadas las ganancias de realimentación,
+se obtiene la matriz de dinámica del sistema
+compensado mediante expansión integral,
+
+\begin{equation}
+    \boxed{
+        A_{LC}\approx
+        \begin{bmatrix}
+            0 & 1 & 0\\
+            -0{,}01958970 & -0{,}23333333 &
+            6{,}62389545\cdot10^{-6}\\
+            -80 & 800 & 0
+        \end{bmatrix}
+    }
+    \label{eq:ej10_alc}
+\end{equation}
+
+Las matrices de entrada de referencia y de salida
+resultan
+
+\begin{equation}
+    B_r=
+    \begin{bmatrix}
+        0\\
+        0\\
+        1
+    \end{bmatrix},
+    \qquad
+    C_e=
+    \begin{bmatrix}
+        80 & -800 & 0
+    \end{bmatrix},
+    \qquad D=0.
+\end{equation}
+
+Por lo tanto, el sistema compensado queda representado
+mediante las ecuaciones
+
+\begin{equation}
+    \begin{cases}
+        \dot{\mathbf{x}}_e(t)=
+        A_{LC}\mathbf{x}_e(t)+B_rr(t),\\
+        y(t)=C_e\mathbf{x}_e(t).
+    \end{cases}
+\end{equation}
+
+A partir de esta representación, se obtiene la función
+de transferencia a lazo cerrado mediante
+
+\begin{equation}
+    \frac{Y(s)}{R(s)}=
+    C_e(sI-A_{LC})^{-1}B_r+D.
+\end{equation}
+
+Desarrollando la expresión anterior en función de
+las ganancias de realimentación,
+
+\begin{equation}
+    \frac{Y(s)}{R(s)}=
+    \frac{k_i(-800s+80)}
+    {s^3+(80{,}1+k_2)s^2+
+    (8+k_1-800k_i)s+80k_i}.
+    \label{eq:ej10_transferencia_general}
+\end{equation}
+
+Reemplazando las ganancias obtenidas,
+
+\begin{equation}
+    \boxed{
+        \frac{Y(s)}{R(s)}\approx
+        \frac{-0{,}00529911636s+0{,}000529911636}
+        {s^3+0{,}23333333s^2+
+        0{,}01429058s+0{,}000529911636}
+    }
+    \label{eq:ej10_transferencia}
+\end{equation}
+
+
+\subsection{Verificación del error de estado estacionario}
+
+Para verificar que la incorporación de la acción
+integral permite corregir el error de estado
+estacionario, se utiliza nuevamente el teorema
+del valor final.
+
+Considerando una entrada escalón unitario,
+
+\begin{equation}
+    R(s)=\frac{1}{s},
+\end{equation}
+
+el error de estado estacionario resulta
+
+\begin{equation}
+    e_{ss}=\lim_{s\to0}
+    \left(
+        1-\frac{Y(s)}{R(s)}
+    \right).
+\end{equation}
+
+Dado que todos los polos del sistema compensado
+se encuentran en el semiplano izquierdo, se cumplen
+las condiciones para aplicar dicho teorema.
+
+Reemplazando la función de transferencia a lazo
+cerrado de la ecuación~\eqref{eq:ej10_transferencia_general}
+y evaluando el límite,
+
+\begin{equation}
+    e_{ss}=1-\frac{80k_i}{80k_i}.
+\end{equation}
+
+Por lo tanto,
+
+\begin{equation}
+    \boxed{e_{ss}=0}
+    \label{eq:ej10_error}
+\end{equation}
+
+Este resultado también puede justificarse a partir
+de la definición de la nueva variable de estado,
+
+\begin{equation}
+    \dot{x}_3(t)=r(t)-y(t).
+\end{equation}
+
+Dado que el sistema compensado es estable y la referencia
+es constante, en régimen permanente las derivadas
+de las variables de estado son nulas,
+
+\begin{equation}
+    \dot{x}_3(\infty)=
+    r(\infty)-y(\infty)=0.
+\end{equation}
+
+Por lo tanto, la salida del sistema en régimen
+permanente coincide con la referencia,
+
+\begin{equation}
+    \boxed{
+        y(\infty)=r(\infty)=1
+    }
+\end{equation}
+
+Se verifica así que la expansión integral permite
+eliminar el error de estado estacionario ante una
+entrada escalón.
+
+
+\subsection{Simulación}
+
+Se simula la respuesta temporal del sistema compensado
+mediante expansión integral ante una entrada escalón
+unitario, utilizando Python y la biblioteca
+\texttt{python-control}.
+
+En la Figura~\ref{fig:ej10} se presenta la respuesta
+temporal de la salida del sistema y la evolución
+del error respecto de la referencia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Imagenes/Ej10.png}
+    \caption{Respuesta temporal y evolución del error
+    del sistema compensado mediante expansión integral.}
+    \label{fig:ej10}
+\end{figure}
+
+Los parámetros temporales correspondientes al sistema
+compensado se presentan en la Tabla~\ref{tab:ej10},
+junto con los correspondientes al ejercicio 8.
+
+En ambos casos, el sobrepico se calcula respecto del
+valor final de la salida y se utiliza el criterio
+de establecimiento del 2~\%.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Parámetro} &
+        \textbf{Deseado} &
+        \textbf{Sin integral} &
+        \textbf{Con integral}\\
+        \hline
+        Sobrepico & 10~\% & 11,07~\% & 10,29~\%\\
+        \hline
+        Tiempo de establecimiento & 120 s & 113,26 s & 119,82 s\\
+        \hline
+        Tiempo de pico & -- & 76,31 s & 83,53 s\\
+        \hline
+        Valor final & 1 & 25161,43 & 1\\
+        \hline
+        Error estacionario & 0 & -25160,43 & 0\\
+        \hline
+    \end{tabular}
+    \caption{Comparación del sistema compensado con
+    y sin expansión integral respecto de las
+    especificaciones deseadas.}
+    \label{tab:ej10}
+\end{table}
+
+Se observa que la incorporación de la acción integral
+permite eliminar el error de estado estacionario,
+obteniendo una salida que converge al valor de la
+referencia unitaria.
+
+Asimismo, se obtienen parámetros temporales cercanos
+a los solicitados en la consigna, con un sobrepico
+del 10,29~\% y un tiempo de establecimiento de
+$119{,}82$ s.
+
+Las pequeñas diferencias respecto de los valores
+deseados se deben a la influencia del tercer polo,
+a la presencia del cero en el semiplano derecho
+y al carácter aproximado de las expresiones utilizadas
+para determinar los polos dominantes.
+
+A pesar de haberse eliminado el error de estado
+estacionario, se mantiene la respuesta inversa
+inicial característica de los sistemas de fase
+no mínima, dado que la expansión integral no
+elimina el cero introducido mediante la aproximación
+de Padé.
+
+Por lo tanto, mediante la expansión integral se logra
+eliminar el error de estado estacionario del sistema,
+conservando aproximadamente las características
+dinámicas deseadas.
+
+Cabe destacar que los resultados obtenidos corresponden
+al modelo lineal aproximado mediante Padé de primer
+orden, suponiendo que las variables de estado están
+disponibles para su realimentación y sin considerar
+las limitaciones físicas del actuador.
+
 \end{document}
